@@ -1,4 +1,4 @@
-package org.example.util;
+package org.example.common.util;
 
 public class MessagePrinter {
 	public void printMenuMessage() {
