@@ -21,7 +21,7 @@ public class GameNumber {
 	}
 
 	private void validateSize() {
-		if (numbers.size() < BALL_SIZE) {
+		if (numbers.size() != BALL_SIZE) {
 			throw new IllegalArgumentException("세 개의 숫자를 입력해주세요.");
 		}
 	}
