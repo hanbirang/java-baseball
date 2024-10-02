@@ -14,6 +14,10 @@ public class GameNumber {
 		validateNoDuplicates();
 	}
 
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
 	private void validateNotEmpty() {
 		if (numbers == null || numbers.isEmpty()) {
 			throw new IllegalArgumentException("숫자를 입력하세요.");
