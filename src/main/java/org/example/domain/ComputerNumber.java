@@ -5,8 +5,8 @@ import java.util.List;
 public class ComputerNumber {
 	private final GameNumber computerNumber;
 
-	public ComputerNumber(List<Integer> computerNumber) {
-		this.computerNumber = new GameNumber(computerNumber);
+	public ComputerNumber(GameNumber computerNumber) {
+		this.computerNumber = computerNumber;
 	}
 
 	public boolean isStrike(int playerNumber, int index) {

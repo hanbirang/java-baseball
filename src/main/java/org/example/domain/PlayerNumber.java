@@ -6,13 +6,13 @@ import static org.example.common.constants.GameConstants.*;
 public class PlayerNumber {
 	private final GameNumber playerNumber;
 
-	public PlayerNumber(List<Integer> playerNumber) {
-		this.playerNumber = new GameNumber(playerNumber);
-		validateNumbersInRange(playerNumber);
+	public PlayerNumber(GameNumber playerNumber) {
+		this.playerNumber = playerNumber;
+		validateNumbersInRange();
 	}
 
-	private void validateNumbersInRange(List<Integer> numbers) {
-		numbers.forEach(this::validateNumberInRange);
+	private void validateNumbersInRange() {
+		playerNumber.getNumbers().forEach(this::validateNumberInRange);
 	}
 
 	private void validateNumberInRange(Integer number) {
