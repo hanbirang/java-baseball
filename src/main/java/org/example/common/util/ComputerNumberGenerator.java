@@ -8,7 +8,7 @@ import java.util.List;
 import org.example.domain.GameNumber;
 
 public class ComputerNumberGenerator {
-	public GameNumber generateComputerNumber() {
+	public List<Integer> generateComputerNumber() {
 		List<Integer> fullNumberRange = new ArrayList<>();
 
 		for (int i=MIN_NUMBER; i<=MAX_NUMBER; i++) {
@@ -16,9 +16,8 @@ public class ComputerNumberGenerator {
 		}
 
 		Collections.shuffle(fullNumberRange);
-		List<Integer> selectedNumbers = fullNumberRange.subList(START_INDEX, BALL_SIZE);
-		List<Integer> computerNumbers = List.copyOf(selectedNumbers);
+		List<Integer> computerNumbers = fullNumberRange.subList(START_INDEX, BALL_SIZE);
 
-		return new GameNumber(computerNumbers);
+		return List.copyOf(computerNumbers);
 	}
 }

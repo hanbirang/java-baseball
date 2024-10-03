@@ -3,16 +3,14 @@ package org.example.domain;
 import java.util.List;
 import static org.example.common.constants.GameConstants.*;
 
-public class PlayerNumber {
-	private final GameNumber playerNumber;
-
-	public PlayerNumber(GameNumber playerNumber) {
-		this.playerNumber = playerNumber;
+public class PlayerNumber extends GameNumber{
+	public PlayerNumber(List<Integer> numbers) {
+		super(numbers);
 		validateNumbersInRange();
 	}
 
 	private void validateNumbersInRange() {
-		playerNumber.getNumbers().forEach(this::validateNumberInRange);
+		numbers.forEach(this::validateNumberInRange);
 	}
 
 	private void validateNumberInRange(Integer number) {

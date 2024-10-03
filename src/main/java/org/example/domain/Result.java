@@ -3,8 +3,8 @@ package org.example.domain;
 import java.util.List;
 
 public class Result {
-	private int ball;
-	private int strike;
+	public final int ball;
+	public final int strike;
 
 	private static final int INIT_VALUE = 0;
 	private static final int THREE_STRIKE = 3;
@@ -12,6 +12,11 @@ public class Result {
 	public Result() {
 		this.ball = INIT_VALUE;
 		this.strike = INIT_VALUE;
+	}
+
+	public Result(final int ball, final int strike) {
+		this.ball = ball;
+		this.strike = strike;
 	}
 
 	public boolean isThreeStrike() {
@@ -22,23 +27,13 @@ public class Result {
 		return this.ball == INIT_VALUE && this.strike == INIT_VALUE;
 	}
 
-	public void incrementBallIfMatched(
-		ComputerNumber computerNumber,
-		int playerNumber,
-		int index
-	) {
-		if (computerNumber.isBall(playerNumber, index)) {
-			this.ball++;
-		}
+	public Result incrementsBall() {
+		final int newBall = this.ball + 1;
+		return new Result(newBall, this.strike);
 	}
 
-	public void incrementStrikeIfMatched(
-		ComputerNumber computerNumber,
-		int playerNumber,
-		int index
-	) {
-		if (computerNumber.isStrike(playerNumber, index)) {
-			this.strike++;
-		}
+	public Result incrementsStrike() {
+		final int newStrike = this.strike + 1;
+		return new Result(this.ball, newStrike);
 	}
 }
