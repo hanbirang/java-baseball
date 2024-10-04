@@ -12,37 +12,56 @@ import org.example.dto.ResultResponse;
 public class GameService {
 	private final ComputerNumberGenerator computerNumberGenerator;
 	private final MessagePrinter messagePrinter;
-	private static final Scanner scanner = new Scanner(System.in);
+	private final PlayerService	playerService;
+	private final ResultService resultService;
 
 	public GameService(
 		ComputerNumberGenerator computerNumberGenerator,
-		MessagePrinter messagePrinter
+		MessagePrinter messagePrinter,
+		PlayerService playerService,
+		ResultService resultService
 	) {
 		this.computerNumberGenerator = computerNumberGenerator;
 		this.messagePrinter = messagePrinter;
+		this.playerService = playerService;
+		this.resultService = resultService;
 	}
+
 	public void progressGame() {
 		while (true) {
-			messagePrinter.printMenuMessage();
-			int choice = scanner.nextInt();
+			int choice = playerService.getMenuInput();
 
 			if (choice == 9) {
 				messagePrinter.printEndMessage();
 				break;
 			} else if (choice == 1) {
-				playGame(scanner);
+				playGame();
 			} else {
 				System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
 			}
 		}
 	}
 
-	private void startGame() {
+	private void playGame() {
 		messagePrinter.printStartMessage();
-		ComputerNumber computerNumber = new ComputerNumber(computerNumberGenerator.generateComputerNumber());
-	}
+		ComputerNumber computerNumber = new ComputerNumber(
+			computerNumberGenerator.generateComputerNumber()
+		);
 
-	private void playGame(Scanner scanner) {
-		startGame();
+		boolean isWin = false;
+		while (!isWin) {
+			PlayerNumber playerNumber = playerService.getPlayerNumber();
+			ResultResponse resultResponse = resultService.generateGameResult(
+				computerNumber,
+				playerNumber
+			);
+
+			messagePrinter.printResultMessage(resultResponse);
+
+			if (resultResponse.isWin()) {
+				messagePrinter.printWinMessage();
+				isWin = true;
+			}
+		}
 	}
 }

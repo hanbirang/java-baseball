@@ -1,15 +1,15 @@
 package org.example.controller;
 
-import org.example.common.util.MessagePrinter;
 import org.example.service.GameService;
-import org.example.service.ResultService;
 
 public class GameController {
-	public GameController(
-		MessagePrinter messagePrinter,
-		GameService gameService,
-		ResultService resultService
-	) {
+	private final GameService gameService;
 
+	public GameController(GameService gameService) {
+		this.gameService = gameService;
+	}
+
+	public void startGame() {
+		gameService.progressGame();
 	}
 }

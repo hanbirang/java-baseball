@@ -1,5 +1,7 @@
 package org.example.common.util;
 
+import org.example.dto.ResultResponse;
+
 public class MessagePrinter {
 	public void printMenuMessage() {
 		System.out.println("게임을 새로 시작하려면 1, 종료하려면 9를 입력하세요.");
@@ -13,8 +15,22 @@ public class MessagePrinter {
 		System.out.println("숫자를 입력해주세요: ");
 	}
 
-	public void printResultMessage() {
+	public void printResultMessage(ResultResponse resultResponse) {
+		if (resultResponse.isNothing()) {
+			System.out.println("낫싱");
+			return;
+		}
 
+		StringBuilder resultMessage = new StringBuilder();
+		if (resultResponse.ball() > 0) {
+			resultMessage.append(resultResponse.ball()).append(" 볼 ");
+		}
+
+		if (resultResponse.strike() > 0) {
+			resultMessage.append(resultResponse.strike()).append(" 스트라이크");
+		}
+
+		System.out.println(resultMessage.toString().trim());
 	}
 
 	public void printWinMessage() {
