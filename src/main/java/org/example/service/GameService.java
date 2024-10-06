@@ -1,12 +1,9 @@
 package org.example.service;
 
-import java.util.Scanner;
-
 import org.example.common.util.ComputerNumberGenerator;
 import org.example.common.util.MessagePrinter;
 import org.example.domain.ComputerNumber;
 import org.example.domain.PlayerNumber;
-import org.example.domain.Result;
 import org.example.dto.ResultResponse;
 
 public class GameService {
@@ -29,20 +26,20 @@ public class GameService {
 
 	public void progressGame() {
 		while (true) {
-			int choice = playerService.getMenuInput();
+			int choice = playerService.requestMenuSelection();
 
 			if (choice == 9) {
 				messagePrinter.printEndMessage();
 				break;
 			} else if (choice == 1) {
-				playGame();
+				startNewGame();
 			} else {
 				System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
 			}
 		}
 	}
 
-	private void playGame() {
+	private void startNewGame() {
 		messagePrinter.printStartMessage();
 		ComputerNumber computerNumber = new ComputerNumber(
 			computerNumberGenerator.generateComputerNumber()
@@ -50,7 +47,7 @@ public class GameService {
 
 		boolean isWin = false;
 		while (!isWin) {
-			PlayerNumber playerNumber = playerService.getPlayerNumber();
+			PlayerNumber playerNumber = playerService.requestPlayerNumber();
 			ResultResponse resultResponse = resultService.generateGameResult(
 				computerNumber,
 				playerNumber

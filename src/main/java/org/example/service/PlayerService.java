@@ -16,16 +16,18 @@ public class PlayerService {
 		this.messagePrinter = messagePrinter;
 	}
 
-	public int getMenuInput() {
+	public int requestMenuSelection() {
 		messagePrinter.printMenuMessage();
 		while(!scanner.hasNextInt()) {
 			System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
 			scanner.next();
 		}
-		return scanner.nextInt();
+		int choice = scanner.nextInt();
+		scanner.nextLine();
+		return choice;
 	}
 
-	public PlayerNumber getPlayerNumber() {
+	public PlayerNumber requestPlayerNumber() {
 		while (true) {
 			try {
 				messagePrinter.printNumberInputMessage();

@@ -12,7 +12,7 @@ public class MessagePrinter {
 	}
 
 	public void printNumberInputMessage() {
-		System.out.println("숫자를 입력해주세요: ");
+		System.out.print("숫자를 입력해주세요: ");
 	}
 
 	public void printResultMessage(ResultResponse resultResponse) {

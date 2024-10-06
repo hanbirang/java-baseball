@@ -23,8 +23,8 @@ public class ResultService {
 		return new ResultResponse(
 			isNothing,
 			isWin,
-			result.ball,
-			result.strike
+			result.getBall(),
+			result.getStrike()
 		);
 	}
 
@@ -34,12 +34,13 @@ public class ResultService {
 		int playerNumber,
 		int index
 	) {
-		if (computerNumber.isBall(playerNumber, index)) {
-			return result.incrementsBall();
-		}
 		if (computerNumber.isStrike(playerNumber, index)) {
 			return result.incrementsStrike();
 		}
+		if (computerNumber.isBall(playerNumber, index)) {
+			return result.incrementsBall();
+		}
+
 		return result;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import static org.example.common.constants.GameConstants.*;
 
 public class GameNumber {
-	public List<Integer> numbers;
+	protected final List<Integer> numbers;
 
 	public GameNumber(List<Integer> numbers) {
 		this.numbers = numbers;
